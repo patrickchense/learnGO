@@ -1,0 +1,47 @@
+##all practice in 《入门GO》
+#predict outcome
+1. testmain.go
+2. count_characters.go  创建一个用于统计字节和字符（rune）的程序，并对字符串 asSASA ddd dsjkdsjs dk 进行分析，然后再分析 asSASA ddd dsjkdsjsこん dk，最后解释两者不同的原因（提示：使用 unicode/utf8 包
+3. string_conversion2.go 尝试改写 string_conversion2.go 中的代码，要求使用 := 方法来对 err 进行赋值，哪些地方可以被修改？
+4. season.go 写一个 Season 函数，要求接受一个代表月份的数字，然后返回所代表月份所在季节的名称（不用考虑月份的日期）
+5. for_loop.go  使用 for 结构创建一个简单的循环。要求循环 15 次然后使用 fmt 包来打印计数器的值。
+                使用 goto 语句重写循环，要求不能使用 for 关键字。
+6. for_character.go 创建一个程序，要求能够打印类似下面的结果（直到每行 25 个字符时为止）：G
+                                                         GG
+                                                         GGG
+                                                         GGGG
+                                                         GGGGG
+                                                         GGGGGG
+                                                         使用 2 层嵌套 for 循环。
+                                                         使用一层 for 循环以及字符串截断
+7. bitwise_complement.go 使用按位补码从 0 到 10，使用位表达式 %b 来格式化输出
+8. fizzbuzz.go 写一个从 1 打印到 100 的程序，但是每当遇到 3 的倍数时，不打印相应的数字，但打印一次 "Fizz"。遇到 5 的倍数时，打印 Buzz 而不是相应的数字。对于同时为 3 和 5 的倍数的数，打印 FizzBuzz（提示：使用 switch 语句）。
+9. rectangle_stars.go 使用 * 符号打印宽为 20，高为 10 的矩形
+10. mult_returnval.go  编写一个函数，接收两个整数，然后返回它们的和、积与差。编写两个版本，一个是非命名返回值，一个是命名返回值
+11. error_returnval.go 编写一个名字为 MySqrt 的函数，计算一个 float64 类型浮点数的平方根，如果参数是一个负数的话将返回一个错误。编写两个版本，一个是非命名返回值，一个是命名返回值
+12. varargs.go 写一个函数，该函数接受一个变长参数并对每个元素进行换行打印
+13. 重写本节中生成斐波那契数列的程序并返回两个命名返回值（详见第 6.2 节），即数列中的位置和对应的值，例如 5 与 4，89 与 10
+14. recursive.go 使用递归函数从 10 打印到 1
+15. jiecheng.go 实现一个输出前 30 个整数的阶乘的程序 (使用了 math/big.Int 的Mul)
+
+
+#use case
+1. type.go   类型别名
+2. char.go   Unicode 字符
+3. presuffix.go 判断string的前缀后缀
+4. index_in_string.go  索引string
+5. count_substring.go 统计子字符串
+6. repeat_string.go 重复字符串创建
+7. string_splitjoin.go 字符串split,join
+8. string_conversion.go  字符串转其他类型
+9. time.go 时间处理
+10. string_pointer.go 字符串指针
+11. ifelse.go if/else的简单例子
+12. switch.go switch 例子1
+13. switch2.go switch 例子2
+14. for.go for循环例子
+15. for_range.go for-range例子
+16. goto.go goto/label例子
+17. side_effect.go 改变外部变量（函数内部）副作用
+18. defer.go defer例子
+19. package_test.go 测试使用自建package (pack1/pack1.go)
