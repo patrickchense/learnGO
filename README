@@ -20,9 +20,73 @@
 10. mult_returnval.go  编写一个函数，接收两个整数，然后返回它们的和、积与差。编写两个版本，一个是非命名返回值，一个是命名返回值
 11. error_returnval.go 编写一个名字为 MySqrt 的函数，计算一个 float64 类型浮点数的平方根，如果参数是一个负数的话将返回一个错误。编写两个版本，一个是非命名返回值，一个是命名返回值
 12. varargs.go 写一个函数，该函数接受一个变长参数并对每个元素进行换行打印
-13. 重写本节中生成斐波那契数列的程序并返回两个命名返回值（详见第 6.2 节），即数列中的位置和对应的值，例如 5 与 4，89 与 10
+13. fibonacci.go 重写本节中生成斐波那契数列的程序并返回两个命名返回值（详见第 6.2 节），即数列中的位置和对应的值，例如 5 与 4，89 与 10
 14. recursive.go 使用递归函数从 10 打印到 1
 15. jiecheng.go 实现一个输出前 30 个整数的阶乘的程序 (使用了 math/big.Int 的Mul)
+16. string_changeAscii.go 包 strings 中的 Map 函数和 strings.IndexFunc() 一样都是非常好的使用例子。请学习它的源代码并基于该函数书写一个程序，要求将指定文本内的所有非 ASCII 字符替换成 ? 或空格。您需要怎么做才能删除这些字符呢
+17. clojure.go 6.8闭包练习在 main 函数中写一个用于打印 Hello World 字符串的匿名函数并赋值给变量 fv，然后调用该函数并打印变量 fv 的类型
+18. fibonacci2.go 不使用递归但使用闭包改写第 6.6 节中的斐波那契数列程序
+19. factory_clojure.go 工厂函数(factory pattern in GO）
+20. calculate_func_time.go 计算函数执行时间
+chapter 7
+21. array_value.go: 证明当数组赋值时，发生了数组内存拷贝
+22. for_array.go: 写一个循环并用下标给数组赋值（从 0 到 15）并且将数组打印在屏幕上
+23. fobinacci_funcarray.go: 为练习 7.3 写一个新的版本，主函数调用一个使用序列个数作为参数的函数，该函数返回一个大小为序列个数的 Fibonacci 切片
+24. slice_len_cap.go 给定 s := make([]byte, 5)，len(s) 和 cap(s) 分别是多少？s = s[2:4]，len(s) 和 cap(s) 又分别是多少
+25. slice_case1.go 假设 s1 := []byte{'p', 'o', 'e', 'm'} 且 s2 := s1[2:]，s2 的值是多少？如果我们执行 s2[1] = 't'，s1 和 s2 现在的值又分别是多少
+26. slice_append.go 给定切片 sl，将一个 []byte 数组追加到 sl 后面。写一个函数 Append(slice, data []byte) []byte，该函数在 sl 不能存储更多数据的时候自动扩容
+27. slice_buffer.go 把一个缓存 buf 分片成两个 切片：第一个是前 n 个 bytes，后一个是剩余的，用一行代码实现
+28. slice_double.go 假设我们有如下数组：items := [...]int{10, 20, 30, 40, 50}
+                a) 如果我们写了如下的 for 循环，那么执行完 for 循环后的 items 的值是多少？如果你不确定的话可以测试一下:)
+                   for _, item := range items {
+                         	item *= 2
+                   }
+                b) 如果 a) 无法正常工作，写一个 for 循环让值可以 double。
+29. slice_sum.go 通过使用省略号操作符 ... 来实现累加方法
+30. sum_array.go
+    a) 写一个 Sum 函数，传入参数为一个 32 位 float 数组成的数组 arrF，返回该数组的所有数字和。
+    如果把数组修改为切片的话代码要做怎样的修改？如果用切片形式方法实现不同长度数组的的和呢？
+    b) 写一个 SumAndAverage 方法，返回两个 int 和 float32 类型的未命名变量的和与平均值。
+31. min_max.go 写一个 minSlice 方法，传入一个 int 的切片并且返回最小值，再写一个 maxSlice 方法返回最大值。
+32. slice_enlarge.go 给定 slice s[]int 和一个 int 类型的因子，扩展 s 使其长度为 len(s) * factor
+33. slice_filter.go 用顺序函数过滤容器：s 是前 10 个整型的切片。构造一个函数 Filter，第一个参数是 s，第二个参数是一个 fn func(int) bool，返回满足函数 fn 的元素切片。通过 fn 测试方法测试当整型值是偶数时的情况。
+34. slice_insert.go 写一个函数 InsertStringSlice 将切片插入到另一个切片的指定位置, 关键是make扩展， copy 返回了完成后的index
+35. slice_remove.go 写一个函数 RemoveStringSlice 将从 start 到 end 索引的元素从切片 中移除, 关键是make改变大小， copy 返回了完成后的index
+36. split_string.go 编写一个函数，要求其接受两个参数，原始字符串 str 和分割索引 i，然后返回两个分割后的字符串
+37. 假设有字符串 str，那么 str[len(str)/2:] + str[:len(str)/2] 的结果是什么？ len/2位置扭转
+38. tort_string.go 编写一个程序，要求能够反转字符串，即将 “Google” 转换成 “elgooG”（提示：使用 []byte 类型的切片）。
+    如果您使用两个切片来实现反转，请再尝试使用一个切片（提示：使用交换法）。
+    如果您想要反转 Unicode 编码的字符串，请使用 []int32 类型的切片。
+    关键是slice的交换，runes[i], runes[n-1-i] = runes[n-1-i], runes[i]
+39. slice_unique.go 编写一个程序，要求能够遍历一个数组的字符，并将当前字符和前一个字符不相同的字符拷贝至另一个数组。
+40. slice_bubblesort.go 编写一个程序，使用冒泡排序的方法排序一个包含整数的切片（算法的定义可参考 维基百科）。
+41. slice_map.go 在函数式编程语言中，一个 map-function 是指能够接受一个函数原型和一个列表，并使用列表中的值依次执行函数原型，公式为：map ( F(), (e1,e2, . . . ,en) ) = ( F(e1), F(e2), ... F(en) )。
+    编写一个函数 mapFunc 要求接受以下 2 个参数：
+    一个将整数乘以 10 的函数
+    一个整数列表
+    最后返回保存运行结果的整数列表。
+
+Map chapter 8
+42. map_week.go 创建一个 map 来保存每周 7 天的名字，将它们打印出来并且测试是否存在 Tuesday 和 Hollyday
+43. map_drink.go 构造一个将英文饮料名映射为法语（或者任意你的母语）的集合；先打印所有的饮料，然后打印原名和翻译后的名字。接下来按照英文名排序后再打印出来
+
+package chapter 9
+44. dlinked_list.go 使用 container/list 包实现一个双向链表，将 101、102 和 103 放入其中并打印出来
+45. int_size.go 通过使用 unsafe 包中的方法来测试你电脑上一个整型变量占用多少个字节
+46. main_greetings.go 创建一个程序 main_greetings.go 能够和用户说 "Good Day" 或者 "Good Night"。不同的问候应该放到 greetings 包中
+    在同一个包中创建一个 ISAM 函数返回一个布尔值用来判断当前时间是 AM 还是 PM，同样创建 IsAfternoon 和 IsEvening 函数。
+    使用 main_greetings 作出合适的问候(提示：使用 time 包)。
+47. 创建一个程序 main_oddven.go 判断前 100 个整数是不是偶数，包内同时包含测试的功能
+
+struct chapter 10
+48. vcard.go定义结构体 Address 和 VCard，后者包含一个人的名字、地址编号、出生日期和图像，试着选择正确的数据类型。构建一个自己的 vcard 并打印它的内容。
+49. 修改 persionext1.go，使它的参数 upPerson 不是一个指针，解释下二者的区别, 值传递，拷贝，不能修改原值
+50. point.go 使用坐标 X、Y 定义一个二维 Point 结构体。同样地，对一个三维点使用它的极坐标定义一个 Polar 结构体。实现一个 Abs() 方法来计算一个 Point 表示的向量的长度，实现一个 Scale 方法，它将点的坐标乘以一个尺度因子（提示：使用 math 包里的 Sqrt 函数）（function Scale that multiplies the coordinates of a point with a scale factor）
+51. rectangle.go 定义一个 Rectangle 结构体，它的长和宽是 int 类型，并定义方法 Area() 和 Primeter()，然后进行测试
+52. anonymous_struct.go 创建一个结构体，它有一个具名的 float 字段，2 个匿名字段，类型分别是 int 和 string。通过结构体字面量新建一个结构体实例并打印它的内容
+53. employee_salary.go 定义结构体 employee，它有一个 salary 字段，给这个结构体定义一个方法 giveRaise 来按照指定的百分比增加薪水。
+54. inheritance_car.go, 创建一个上面 Car 和 Engine 可运行的例子，并且给 Car 类型一个 wheelCount 字段和一个 numberOfWheels() 方法。
+    创建一个 Mercedes 类型，它内嵌 Car，并新建 Mercedes 的一个实例，然后调用它的方法, 然后仅在 Mercedes 类型上创建方法 sayHiToMerkel() 并调用它。
 
 
 #use case
@@ -45,3 +109,23 @@
 17. side_effect.go 改变外部变量（函数内部）副作用
 18. defer.go defer例子
 19. package_test.go 测试使用自建package (pack1/pack1.go)
+20. fibonacci_memory.go 使用slice/array来提升性能，在fibonacci函数中
+21. pointer_array.go 关于array的值传递和引用传递的例子
+22. multidim_array.go 多维数组例子
+23. array_sum.go 传递数组给函数, 不常见，多用slice，而不是数组指针
+24. array_slice.go 数组和slice的例子
+25. make_slice.go make创建slice
+26. reslicing.go 切片重组
+27.  copy_append_slice.go, 切片复制和追加
+28. make_map.go , 创建map
+29. map_testelement.go map 元素设置，修改，获取，删除
+30. map_forrange2.go map类型的slice使用
+31. map_sort.go 对map进行排序，关键是使用sort包
+32. pattern.go regexp 包使用， 其中的compile, ReplaceAllString, ReplaceAllStringFunc等方法
+33. big.go big包使用, NewInt, NewRat, Mul, Add等方法
+34. person.go struct的定义，创建，初始化的例子
+35. struct_tag.go struct 可以自带tag，例子, 标签的内容不可以在一般的编程中使用，只有包 reflect 能获取它, 就可以通过 Field 来索引结构体的字段，然后就可以使用 Tag 属性
+36. structs_anonymous_fields.go struct 可以包含一个或多个 匿名（或内嵌）字段，即这些字段没有显式的名字，只有字段的类型是必须的，此时类型就是字段的名字。匿名字段本身可以是一个结构体类型，即 结构体可以包含内嵌结构体
+37. method.go struct 的方法例子
+38. method_on_time.go 在外部包的struct上直接定义方法是不行的，必须先别名到自己的包中
+39. method3.go 内嵌struct, 定义的方法能直接被外层类型调用
