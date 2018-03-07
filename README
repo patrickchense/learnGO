@@ -87,6 +87,73 @@ struct chapter 10
 53. employee_salary.go 定义结构体 employee，它有一个 salary 字段，给这个结构体定义一个方法 giveRaise 来按照指定的百分比增加薪水。
 54. inheritance_car.go, 创建一个上面 Car 和 Engine 可运行的例子，并且给 Car 类型一个 wheelCount 字段和一个 numberOfWheels() 方法。
     创建一个 Mercedes 类型，它内嵌 Car，并新建 Mercedes 的一个实例，然后调用它的方法, 然后仅在 Mercedes 类型上创建方法 sayHiToMerkel() 并调用它。
+55. point_methods.go 从 point.go 开始（第 10.1 节的练习）：使用方法来实现 Abs() 和 Scale()函数，Point 作为方法的接收者类型。也为 Point3 和 Polar 实现 Abs() 方法。完成了 point.go 中同样的事情，只是这次通过方法
+56.  inherit_methods.go 定义一个结构体类型 Base，它包含一个字段 id，方法 Id() 返回 id，方法 SetId() 修改 id。结构体类型 Person 包含 Base，及 FirstName 和 LastName 字段。结构体类型 Employee 包含一个 Person 和 salary 字段
+57. magic.go 预测输出, 多态, 方法重载的使用
+58. celsius.go 为 float64 定义一个别名类型 Celsius，并给它定义 String()，它输出一个十进制数和 °C 表示的温度值。关键： strconv.FormatFloat(float64(c), 'f', 1, 32)
+59. days.go 为 int 定义一个别名类型 Day，定义一个字符串数组它包含一周七天的名字，为类型 Day 定义 String() 方法，它输出星期几的名字。使用 iota 定义一个枚举常量用于表示一周的中每天（MO、TU...）
+60.  stack_arr.go/stack_struct.go 实现栈（stack）数据结构：
+     它的格子包含数据，比如整数 i、j、k 和 l 等等，格子从底部（索引 0）至顶部（索引 n）来索引。这个例子中假定 n=3，那么一共有 4 个格子。
+     一个新栈中所有格子的值都是 0。
+     push 将一个新值放到栈的最顶部一个非空（非零）的格子中。
+     pop 获取栈的最顶部一个非空（非零）的格子的值。现在可以理解为什么栈是一个后进先出（LIFO）的结构了吧。
+     为栈定义一 Stack 类型，并为它定义一个 Push 和 Pop 方法，再为它定义 String() 方法（用于调试）它输出栈的内容，比如：[0:i] [1:j] [2:k] [3:l]。
+     1）stack_arr.go：使用长度为 4 的 int 数组作为底层数据结构。
+     2）stack_struct.go：使用包含一个索引和一个 int 数组的结构体作为底层数据结构，索引表示第一个空闲的位置。 3）使用常量 LIMIT 代替上面表示元素个数的 4 重新实现上面的 1）和 2），使它们更具有一般性。
+61.从练习 10.16 开始（它基于结构体实现了一个栈结构），为栈的实现（stack_struct.go）创建一个单独的包 stack，并从 main 包 main.stack.go 中调用它
+interface chapter 11
+62. simple_interface.go 定义一个接口 Simpler，它有一个 Get() 方法和一个 Set()，Get()返回一个整型值，Set() 有一个整型参数。创建一个结构体类型 Simple 实现这个接口。
+    接着定一个函数，它有一个 Simpler 类型的参数，调用参数的 Get() 和 Set() 方法。在 main 函数里调用这个函数，看看它是否可以正确运行
+63. simple_interface2.go, 接着练习 11.1 中的内容，创建第二个类型 RSimple，它也实现了接口 Simpler，写一个函数 fi，使它可以区分 Simple 和 RSimple 类型的变量, 直接改在simple_interface.go上
+64. simple_interface3.go, 继续 练习11.2，在它中添加一个 gI 函数，它不再接受 Simpler 类型的参数，而是接受一个空接口参数。然后通过类型断言判断参数是否是 Simpler 类型。最后在 main 使用 gI 取代 fI 函数并调用它。确保你的代码足够安全, 直接改在simple_interface.go上
+65. min_interface.go/minmain.go, 模仿stack,实现min_interface得到数组的最小值接口(int, string array), 创建main来测试
+66. map_function_interface.go 在练习 7.13 中我们定义了一个 map 函数来使用 int 切片 （map_function.go）,
+    通过空接口和类型断言，现在我们可以写一个可以应用于许多类型的 泛型 的 map 函数，为 int 和 string 构建一个把 int 值加倍和连接字符串值的 map 函数 mapFunc
+67. map_function_interface_var.go, 稍微改变练习 11.9，允许 mapFunc 接收不定数量的 items
+68. main_stack.go—stack/stack_general.go 在练习 10.10 和 10.11 中我们开发了一些栈结构类型。但是它们被限制为某种固定的内建类型。现在用一个元素类型是 interface{}（空接口）的切片开发一个通用的栈类型
+    实现下面的栈方法：
+    Len() int
+    IsEmpty() bool
+    Push(x interface{})
+    Pop() (x interface{}, error)
+    Pop() 改变栈并返回最顶部的元素；Top() 只返回最顶部元素。
+    在主程序中构建一个充满不同类型元素的栈，然后弹出并打印所有元素的值。
+
+chapter 12 read/write
+69. word_letter_count.go, 编写一个程序，从键盘读取输入。当用户输入 'S' 的时候表示输入结束，这时程序输出 3 个数字：
+    i) 输入的字符的个数，包括空格，但不包括 '\r' 和 '\n'
+    ii) 输入的单词的个数
+    iii) 输入的行数
+70. calculator.go 编写一个简单的逆波兰式计算器，它接受用户输入的整型数（最大值 999999）和运算符 +、-、*、/。
+    输入的格式为：number1 ENTER number2 ENTER operator ENTER --> 显示结果
+    当用户输入字符 'q' 时，程序结束。请使用您在练习11.3中开发的 stack 包
+71. wiki_part1.go, 程序中的数据结构如下，是一个包含以下字段的结构:
+    type Page struct {
+        Title string
+        Body  []byte
+    }
+    请给这个结构编写一个 save 方法，将 Title 作为文件名、Body作为文件内容，写入到文本文件中。
+    再编写一个 load 函数，接收的参数是字符串 title，该函数读取出与 title 对应的文本文件。请使用 *Page 做为参数，因为这个结构可能相当巨大，我们不想在内存中拷贝它。请使用 ioutil 包里的函数（参考章节12.2.1）。
+72. hash_md5.go 利用crypto/md5包来校验md5
+
+charpter 13 错误处理
+73. panic_defer_convint.go 写一个 ConvertInt64ToInt 函数把 int64 值转换为 int 值，如果发生错误（提示：参见 4.5.2.1 节）就 panic。然后在函数 IntFromInt64 中调用这个函数并 recover，返回一个整数和一个错误。请测试这个函数！
+
+charpter 14 goroutine channel
+74. channel_block3.go：写一个通道证明它的阻塞性，开启一个协程接收通道的数据，持续 15 秒，然后给通道放入一个值。在不同的阶段打印消息并观察输出
+75. gosum.go：用这种习惯用法写一个程序，开启一个协程来计算2个整数的合并等待计算结果并打印出来
+76. producer_consumer.go：用这种习惯用法写一个程序，有两个协程，第一个提供数字 0，10，20，...90 并将他们放入通道，第二个协程从通道中读取并打印。main() 等待两个协程完成后再结束
+77. channel_buffer.go：给 channel_block3.go 的通道增加缓冲并观察输出有何不同
+78. random_bitgen.go 做一个随机位生成器，程序可以提供无限的随机 0 或者 1 的序列
+
+charpter 15 网络
+79. webhello2.go 编写一个网页服务器监听端口9999，有如下处理函数：
+当请求http://localhost:9999/hello/Name时，响应：hello Name(Name需是一个合法的姓，比如Chris或者Madeleine)
+当请求http://localhost:9999/shouthello/Name时，响应：hello NAME
+关键在于 *http.Request 对象关于 PATH的获取, req.URL.Path[len("/hello/"):]
+80. hello_server.go创建一个空结构hello并使它实现http.Handler。运行并测试。
+
+
 
 
 #use case
@@ -129,3 +196,40 @@ struct chapter 10
 37. method.go struct 的方法例子
 38. method_on_time.go 在外部包的struct上直接定义方法是不行的，必须先别名到自己的包中
 39. method3.go 内嵌struct, 定义的方法能直接被外层类型调用
+40. embed_func1.go 类型中嵌入功能, 聚合（或组合）, 内嵌
+41. method_string.go String方法实现, printf中 %v, %T, %#v 的使用
+42. interfaces.go 接口例子
+43. valuable.go 多态，多个struct实现一个接口
+44. type_interfaces.go 类型断言例子 var.(T) , 与if结合
+45. sort.go/sortmain.go 一个完整的例子sort包的sort实现了sort interface, 并实现了IntArray和StringArray类型的定义，实现sort接口, sortmain中测试了ints和strings, 并定义了day/dayArray类型，实现sort接口
+46. empty_interface.go 空接口例子， 空接口作用！, 类似Object， 各种适配
+47. emptyint_switch.go, 空接口和type-switch结合的例子, 联合lamba用法
+48. reflect1.go, reflect包的例子, TypeOf, Kind, Float, Interface等方法
+49. reflect2.go, reflect包的例子, Method利用等
+50. readinput1.go 从控制台输入例子, 从键盘和标准输入 os.Stdin 读取输入，最简单的办法是使用 fmt 包提供的 Scan 和 Sscan 开头的函数
+51. readinput2.go 带换存的读取, 使用 bufio 包提供的缓冲读取（buffered reader）来读取数据
+52.  fileinput.go 读取文件的例子, 使用os.Open, close file等, 然后利用bufio 按行读取, error == io.EOF
+53. read_write_file1.go, 读取文件到一个string中, ioutil包, 到[]byte
+54. read_file2.go, 按列读取, fmt包的FScan方法,
+55. gzipped.go, 压缩文件读取例子, compress/gzip包使用, 逻辑还是获取到reader, 然后ReadString('\n')
+56. fileoutput.go 写文件的例子, 逻辑打开文件(模式), bufio的writer可以写, flush, 然后close
+57. filecopy.go 文件copy的例子, 利用io包Copy方法
+58. os_args.go 命令行参数的例子, 读取os.Args
+59. echo.go 模拟echo的功能, 利用flag包, flag 包有一个扩展功能用来解析命令行选项。但是通常被用来替换基本常量
+60. cat2.go 利用os.file Read 方法, 和 slice byte 来读取
+61. json.go json的处理, 利用encoding/json包, 主要Marshal和Unmarshal方法
+62. xml.go xml的处理, 利用encoding/xml包
+63. gob1.go gob是go特有的序列化和反序列化, encoding/gob包, 也是io.Writer接口, NewEncoder()方法创建Encoder来Encode(), 反之NewDecoder创建Decoder
+64. hash_sha1.go 加密 sha1和md5, 利用crypto/sha1包
+65. errors.go 定义错误,  errors.New("Not found error")
+66. panic.go 使用panic 例子
+67. panic_recover.go 从panic 恢复, defer func() {if e := recover(); e != nil {}} ()
+68. goroutine_select.go goroutine的例子, 用select来处理chan
+69. goroutine2.go 通过chan来对goroutine进行通信
+70. channel_block.go chan的阻塞功能例子
+71. timer_goroutine.go goroutine和计时器的组合, 里面包含多个timer和goroutine的组合模式, 超时, 先到先得等
+72. server.go 一个简单的server, 利用net包, net.Listen, listener.Accept, 获取连接net.Conn, conn.Read, 这个步骤跟java是类似的
+73. client.go 一个简单的client,net包, net.Dial 获取conn, 然后 write
+74. simple_tcp_server_v1.go 一个完整的tcp server例子, 包含读取命令行参数(flag), server(net.ResolveTCPAddr, net.ListenTCP), listener.Accept, 用到了panic
+75. hello_world_webserver.go 一个简单的http web server, net/http包, http.ListenAndServe, http.HandleFunc
+76. poll_url.go 访问, 读取页面, http.Head , Get 等
